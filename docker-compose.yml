@@ -19,6 +19,10 @@ services:
             retries: 3
             start_period: 40s
         labels:
-            - "traefik.http.services.photon.loadbalancer.server.port=2322"  # Neu hinzufügen
+            - "traefik.http.services.photon.loadbalancer.server.port=2322"
+            - "traefik.enable=true"
+            - "traefik.http.routers.photon-https.rule=Host(`geo.building.earth`)"
+            - "traefik.http.routers.photon-https.tls.certresolver=letsencrypt"
+            - "traefik.http.routers.photon-https.entrypoints=https"
 volumes:
     photon_data:
