@@ -11,9 +11,14 @@ services:
             - photon_data:/photon/photon_data
         restart: unless-stopped
         ports:
-            - "2322:2322"
-       labels:
-            - "traefik.http.services.photon.loadbalancer.server.port=2322"
-
+            - "2322:2322"  # Änderung: 2322 mapped auf 9201
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:2322/api/"]  # Änderung: Port 9201
+            interval: 30s
+            timeout: 10s
+            retries: 3
+            start_period: 40s
+        labels:
+            - "traefik.http.services.photon.loadbalancer.server.port=2322"  # Neu hinzufügen
 volumes:
     photon_data:
