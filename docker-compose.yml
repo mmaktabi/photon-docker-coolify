@@ -18,30 +18,6 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    labels:
-      # Basis-Konfiguration
-      - "traefik.enable=true"
-      
-      # Service-Konfiguration
-      - "traefik.http.services.photon.loadbalancer.server.port=2322"
-      
-      # HTTPS Router
-      - "traefik.http.routers.photon-https.rule=Host(`geo.building.earth`)"
-      - "traefik.http.routers.photon-https.entrypoints=https"
-      - "traefik.http.routers.photon-https.tls=true"
-      - "traefik.http.routers.photon-https.tls.certresolver=letsencrypt"
-      - "traefik.http.routers.photon-https.service=photon"
-      - "traefik.http.routers.photon-https.middlewares=gzip"
-      
-      # HTTP Router (für Redirect)
-      - "traefik.http.routers.photon-http.rule=Host(`geo.building.earth`)"
-      - "traefik.http.routers.photon-http.entrypoints=http"
-      - "traefik.http.routers.photon-http.middlewares=redirect-to-https"
-      - "traefik.http.routers.photon-http.service=photon"
-      
-      # Middlewares
-      - "traefik.http.middlewares.gzip.compress=true"
-      - "traefik.http.middlewares.redirect-to-https.redirectscheme.scheme=https"
 
 volumes:
   photon_data:
