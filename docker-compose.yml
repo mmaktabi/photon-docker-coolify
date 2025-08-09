@@ -13,13 +13,11 @@ services:
     ports:
       - "2322:2322"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:2322/api/"]
+      test: ["CMD", "curl", "-f", "http://localhost:2322/"]
       interval: 30s
       timeout: 10s
       retries: 3
-      start_period: 40s
-    labels:
-      - "traefik.http.services.hwkwogssgsowsogkow448oo0-photon.loadbalancer.server.port=2322"
+      start_period: 120s
 
 volumes:
   photon_data:
