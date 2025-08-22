@@ -10,13 +10,5 @@ services:
     volumes:
       - photon_data:/photon/photon_data
     restart: unless-stopped
-    labels:  # <- Hier fehlte die richtige Einrückung!
-      - "traefik.http.middlewares.testheader.headers.accesscontrolallowmethods=GET,OPTIONS,PUT"
-      - "traefik.http.middlewares.testheader.headers.accesscontrolallowheaders=*"
-     #  - "traefik.http.middlewares.testheader.headers.accesscontrolalloworiginlist=https://foo.bar.org,https://example.org"
-      - "traefik.http.middlewares.testheader.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.testheader.headers.addvaryheader=true"
-
-
 volumes:
   photon_data:
