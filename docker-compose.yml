@@ -10,5 +10,15 @@ services:
     volumes:
       - photon_data:/photon/photon_data
     restart: unless-stopped
+    labels:
+      # CORS für Browser-Zugriff
+      - "traefik.http.middlewares.photon-cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE"
+      - "traefik.http.middlewares.photon-cors.headers.accesscontrolalloworiginlist=*"
+      - "traefik.http.middlewares.photon-cors.headers.accesscontrolallowheaders=*"
+      - "traefik.http.middlewares.photon-cors.headers.accesscontrolmaxage=100"
+      - "traefik.http.middlewares.photon-cors.headers.addvaryheader=true"
+      # CORS zu den Middlewares hinzufügen
+      - "traefik.http.routers.photon.middlewares=photon-cors"
+
 volumes:
   photon_data:
