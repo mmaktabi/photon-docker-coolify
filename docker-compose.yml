@@ -12,13 +12,13 @@ services:
     restart: unless-stopped
     labels:  # <- Hier fehlte die richtige Einrückung!
       # CORS Labels:
-      - "traefik.http.middlewares.cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE"
-      - "traefik.http.middlewares.cors.headers.accesscontrolalloworigin=*"
-      - "traefik.http.middlewares.cors.headers.accesscontrolmaxage=100"
-      - "traefik.http.middlewares.cors.headers.addvaryheader=true"
-      - "traefik.http.middlewares.cors.headers.accesscontrolallowheaders=*"
+      - traefik.http.middlewares.cors.headers.accesscontrolallowmethods=GET,OPTIONS,PUT,POST,DELETE
+      - traefik.http.middlewares.cors.headers.accesscontrolalloworigin=*
+      - traefik.http.middlewares.cors.headers.accesscontrolmaxage=100
+      - traefik.http.middlewares.cors.headers.addvaryheader=true
+      - traefik.http.middlewares.cors.headers.accesscontrolallowheaders=*
       # WICHTIG: cors zu den Middlewares hinzufügen:
-      - "traefik.http.routers.photon.middlewares=cors"
+      - traefik.http.routers.photon.middlewares=cors
 
 volumes:
   photon_data:
